@@ -45,8 +45,8 @@ export default {
 
     getDiceUrl() {
       const url = this.getDiceImgUrlPath(API_HOST_IMG_SUFFIX_URIS);
-      if (!url || this.currentRoundResult.previousDraw === null) return "";
-      return `${url}/${this.currentRoundResult.previousDraw}.png`;
+      if (!url || this.currentRoundResult.draw === null) return "";
+      return `${url}/${this.currentRoundResult.draw}.png`;
     },
   },
 
