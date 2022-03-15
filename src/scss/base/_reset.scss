@@ -1,0 +1,62 @@
+img {
+  max-width: 100%;
+}
+
+ul {
+  margin: 0;
+  list-style-type: none;
+  padding: 0;
+  text-indent: 0;
+}
+
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+a {
+  color: #42b983;
+}
+
+button {
+  color: inherit;
+  font-family: inherit;
+}
+
+svg {
+  flex: none;
+}
+
+section {
+  margin-bottom: 50px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+h3,
+h4 {
+  margin: 10px 0;
+}
+
+h1 {
+  font-size: rem(32px);
+}
+
+h3 {
+  font-size: rem(24px);
+}
+
+h4 {
+  font-size: rem(20px);
+}
+
+h5 {
+  font-size: rem(16px);
+}
