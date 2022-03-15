@@ -114,11 +114,12 @@ export default {
     }
 
     &__img {
-      &::after {
-        content: "";
-        display: inline-block;
-        height: 177px;
-      }
+      width: 125px;
+      height: 125px;
+      margin: auto;
+      border: 2px solid $dice-border;
+      background: $dice-background;
+      box-shadow: 0 10px 14px $shadow;
     }
 
     &__text {
@@ -129,7 +130,7 @@ export default {
       @include has-min-width("sm") {
         font-size: rem(24px);
         font-weight: 400;
-        margin: 20px 0 20px;
+        margin: 30px 0 20px;
       }
     }
   }

@@ -1,7 +1,8 @@
 # Draw Dice Game
 
 # TODO:
- - 3D animation dice drawing 
+ - SCSS mixin for box-shadow
+ - buttons click animation 
  - downloading spinner / drawing dice
 
 # Recruitment assignment

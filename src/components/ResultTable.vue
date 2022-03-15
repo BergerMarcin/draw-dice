@@ -61,7 +61,7 @@ export default {
     table,
     th,
     td {
-      border: 1px solid $gray;
+      border: 1px solid $border;
       border-spacing: 1px;
       font-size: 12px;
       @include has-min-width("xs") {

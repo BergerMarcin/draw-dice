@@ -1,25 +1,40 @@
 <template>
   <div class="scene">
     <div class="cube" ref="cube">
-      <div class="cube__face cube__face--front">front</div>
-      <div class="cube__face cube__face--back">back</div>
-      <div class="cube__face cube__face--right">right</div>
-      <div class="cube__face cube__face--left">left</div>
-      <div class="cube__face cube__face--top">top</div>
-      <div class="cube__face cube__face--bottom">bottom</div>
+      <div
+        v-for="wall in diceWalls"
+        :key="wall.value"
+        class="cube__face"
+        :style="`transform: rotateX(${wall.rotateX}deg) rotateY(${wall.rotateY}deg) translateZ(50px)`"
+      >
+        <img :src="getDiceUrl(wall.value)" :alt="`Dice-Wall_${wall.description}-Points${wall.value}`" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { API_HOST_IMG_SUFFIX_URIS } from "@/helpers/constants";
+import { diceApiMixin } from "@/mixins/diceApiMixin";
+
 export default {
   name: "DiceRotating",
 
+  mixins: [diceApiMixin],
+
   data: () => ({
-    rotationTimeout: Number,
     cubeElement: HTMLElement,
+    rotationTimeout: Number,
     rotationX: 0,
     rotationY: 0,
+    diceWalls: [
+      { value: 1, description: "front", rotateX: 0, rotateY: 0 },
+      { value: 2, description: "bottom", rotateX: -90, rotateY: 0 },
+      { value: 3, description: "right", rotateX: 0, rotateY: 90 },
+      { value: 4, description: "left", rotateX: 0, rotateY: -90 },
+      { value: 5, description: "top", rotateX: 90, rotateY: 0 },
+      { value: 6, description: "back", rotateX: 0, rotateY: 180 },
+    ],
   }),
 
   mounted() {
@@ -32,8 +47,14 @@ export default {
   },
 
   methods: {
+    getDiceUrl(points) {
+      const url = this.getDiceImgUrlPath(API_HOST_IMG_SUFFIX_URIS);
+      if (!url || !points) return "";
+      return `${url}/${points}.png`;
+    },
+
     setRandomDiceRotation() {
-      this.cubeElement.style.transform = `translateZ(-100px) rotateX(${this.rotationX}deg) rotateY(${this.rotationY}deg)`;
+      this.cubeElement.style.transform = `translateZ(-50px) rotateX(${this.rotationX}deg) rotateY(${this.rotationY}deg)`;
       let deltaRotationX = 0;
       let deltaRotationY = 0;
       while (deltaRotationX === 0 && deltaRotationY === 0) {
@@ -49,79 +70,31 @@ export default {
 
 <style lang="scss" scoped>
 .scene {
-  width: 200px;
-  height: 200px;
-  margin: 20px auto 60px;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 50px;
   perspective: 600px;
 }
 
 .cube {
   position: relative;
-  width: 200px;
-  height: 200px;
+  width: 100px;
+  height: 100px;
   transform-style: preserve-3d;
-  transform: translateZ(-100px);
+  transform: translateZ(-50px);
   transition: transform 1000ms linear;
 
   &__face {
     position: absolute;
-    width: 200px;
-    height: 200px;
-    border: 2px solid black;
-    line-height: 200px;
+    width: 100px;
+    height: 100px;
+    border: 2px solid $dice-border;
+    background: $dice-background;
+    color: white;
     font-size: 40px;
     font-weight: bold;
-    color: white;
+    line-height: 100px;
     text-align: center;
-
-    &--front {
-      background: hsla(0, 100%, 50%, 0.7);
-      transform: rotateY(0deg) translateZ(100px);
-    }
-
-    &--right {
-      background: hsla(60, 100%, 50%, 0.7);
-      transform: rotateY(90deg) translateZ(100px);
-    }
-
-    &--back {
-      background: hsla(120, 100%, 50%, 0.7);
-      transform: rotateY(180deg) translateZ(100px);
-    }
-
-    &--left {
-      background: hsla(180, 100%, 50%, 0.7);
-      transform: rotateY(-90deg) translateZ(100px);
-    }
-
-    &--top {
-      background: hsla(240, 100%, 50%, 0.7);
-      transform: rotateX(90deg) translateZ(100px);
-    }
-
-    &--bottom {
-      background: hsla(300, 100%, 50%, 0.7);
-      transform: rotateX(-90deg) translateZ(100px);
-    }
   }
 }
-
-//.cube.show-front {
-//  transform: translateZ(-100px) rotateY(0deg);
-//}
-//.cube.show-right {
-//  transform: translateZ(-100px) rotateY(-60deg) rotateX(-60deg);
-//}
-//.cube.show-back {
-//  transform: translateZ(-100px) rotateY(-180deg);
-//}
-//.cube.show-left {
-//  transform: translateZ(-100px) rotateY(90deg);
-//}
-//.cube.show-top {
-//  transform: translateZ(-100px) rotateX(-90deg);
-//}
-//.cube.show-bottom {
-//  transform: translateZ(-100px) rotateX(90deg);
-//}
 </style>
