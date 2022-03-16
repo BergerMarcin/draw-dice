@@ -1,4 +1,5 @@
-@import "../abstract/index";
+@import "../abstract/color";
+@import "./box-shadow";
 
 @mixin app-button {
   display: flex;
@@ -12,7 +13,7 @@
   line-height: rem(18px);
   border-radius: 0;
   border: 2px solid transparent;
-  box-shadow: 0 10px 14px $shadow;
+  @include box-shadow;
   cursor: pointer;
   transition: filter 0.3s ease;
 
@@ -30,7 +31,7 @@
     &:not(:disabled) {
       &:hover {
         filter: brightness(0.8);
-        box-shadow: 0 10px 10px $shadow;
+        @include box-shadow-hover;
       }
     }
   }

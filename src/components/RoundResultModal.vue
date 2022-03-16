@@ -97,7 +97,7 @@ $mask-brightness: 0.5;
     transform: translate(-50%, -50%);
     background: $modal-color;
     padding: 15px 15px 25px;
-    box-shadow: 0 10px 14px $shadow;
+    @include box-shadow;
     width: 85%;
     @include has-min-width("sm") {
       padding: 20px 20px 35px;
@@ -124,7 +124,7 @@ $mask-brightness: 0.5;
       margin: auto;
       border: 2px solid $dice-border;
       background: $dice-background;
-      box-shadow: 0 10px 14px $shadow;
+      @include box-shadow;
     }
 
     &__text {

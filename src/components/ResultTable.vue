@@ -55,7 +55,7 @@ export default {
     table {
       margin-left: auto;
       margin-right: auto;
-      box-shadow: 0 10px 10px $shadow;
+      @include box-shadow;
     }
 
     table,

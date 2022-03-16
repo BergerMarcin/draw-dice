@@ -29,7 +29,7 @@ export default {
   margin-right: auto;
   padding: 30px 10px;
   border: 1px solid $border;
-  box-shadow: 0 10px 10px $shadow;
+  @include box-shadow;
   @include has-min-width("xs") {
     padding: 30px;
   }

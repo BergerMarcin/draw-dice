@@ -1,0 +1,9 @@
+@import "../abstract/color";
+
+@mixin box-shadow {
+  box-shadow: 0 10px 14px $shadow;
+}
+
+@mixin box-shadow-hover {
+  box-shadow: 0 10px 10px $shadow;
+}

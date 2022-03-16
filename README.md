@@ -1,7 +1,6 @@
 # Draw Dice Game
 
 # TODO:
- - SCSS mixin for box-shadow
  - buttons click animation 
  - downloading spinner / drawing dice
 
