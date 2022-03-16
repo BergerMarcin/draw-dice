@@ -1,20 +1,21 @@
 <template>
-  <transition name="fade" v-if="modalText">
-    <div class="modal">
-      <div class="modal__mask" @click="onOutsideModalClick">
-        <!-- use @click.stop (to stop bubbling to the top of the DOM and stop trigger @click="onOutsideModalClick")-->
-        <div class="modal__container" @click.stop="onModalClick">
-          <div v-if="shouldDisplayCloseIcon" class="modal__container__icon">
-            <span @click="onCloseIconClick">
-              <CloseIcon class="modal-icon" />
-            </span>
-          </div>
-          <div v-if="getDiceUrl" class="modal__container__img">
-            <img :src="getDiceUrl" alt="Dice" />
-          </div>
-          <p class="modal__container__text" v-html="modalText" />
-          <button @click="onClose">OK</button>
+  <transition name="fade">
+    <div v-if="showModal" class="modal__mask" @click="onOutsideModalClick">
+      <!-- use @click.stop (to stop bubbling to the top of the DOM and stop trigger @click="onOutsideModalClick")-->
+      <div class="modal__container" @click.stop="onModalClick">
+        <div v-if="shouldDisplayCloseIcon" class="modal__container__icon">
+          <span @click="onCloseIconClick">
+            <CloseIcon class="modal-icon" />
+          </span>
         </div>
+        <div v-if="getDiceUrl" class="modal__container__img">
+          <img :src="getDiceUrl" alt="Dice" />
+        </div>
+        <div class="modal__container__text">
+          <p>Draw: {{ currentRoundResult.draw }}</p>
+          <p>Your points: {{ currentRoundResult.points }}</p>
+        </div>
+        <button @click="onClose">OK</button>
       </div>
     </div>
   </transition>
@@ -37,7 +38,7 @@ export default {
     shouldCloseOnOutsideModalClick: { type: Boolean, default: true },
     shouldCloseOnModalClick: { type: Boolean, default: false },
     shouldDisplayCloseIcon: { type: Boolean, default: true },
-    modalText: { type: String, default: "" },
+    showModal: { type: Boolean, default: false },
   },
 
   computed: {
@@ -71,18 +72,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@include animation-fade(0.5s) {
+$animation-duration: 0.5s;
+$mask-brightness: 0.5;
+
+@include animation-fade($animation-duration) {
   opacity: 0;
 }
 
 .modal {
   &__mask {
+    @include animation-backdrop($animation-duration, $mask-brightness);
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    backdrop-filter: brightness(0.9);
+    backdrop-filter: brightness($mask-brightness);
   }
 
   &__container {
@@ -126,11 +131,14 @@ export default {
       font-size: rem(18px);
       font-weight: 700;
       text-align: center;
-      margin: 10px 0 15px;
+      margin: 30px 0 0;
       @include has-min-width("sm") {
         font-size: rem(24px);
         font-weight: 400;
-        margin: 30px 0 20px;
+        margin-bottom: 5px;
+      }
+      & p {
+        padding-bottom: 15px;
       }
     }
   }

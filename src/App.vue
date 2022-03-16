@@ -12,7 +12,7 @@
 
     <ResultTable />
 
-    <RoundResultModal v-if="modalText" :modalText="modalText" @close-result-modal="handleCloseResultModal" />
+    <RoundResultModal :show-modal="showModal" @close-result-modal="handleCloseResultModal" />
   </div>
 </template>
 
@@ -36,7 +36,7 @@ export default {
 
   data: () => ({
     choiceType: CHOICE,
-    modalText: "",
+    showModal: false,
   }),
 
   computed: {
@@ -89,7 +89,7 @@ export default {
       const round = { ...this.currentRoundResult, draw, choice, points };
       await this.updateCurrentRound({ round });
 
-      this.modalText = `Draw: ${draw}</br></br>Your points: ${points}`;
+      this.showModal = true;
     },
 
     calcPointsOfRound(choice, draw) {
@@ -117,7 +117,7 @@ export default {
     },
 
     async handleCloseResultModal() {
-      this.modalText = "";
+      this.showModal = false;
       await this.startNewRoundOrNewGame();
     },
   },
