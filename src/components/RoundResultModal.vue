@@ -12,8 +12,10 @@
           <img :src="getDiceUrl" alt="Dice" />
         </div>
         <div class="modal__container__text">
+          <p>Previous draw: {{ currentRoundResult.previousDraw }}</p>
+          <p>Your choice: {{ currentRoundResult.choice }}</p>
           <p>Draw: {{ currentRoundResult.draw }}</p>
-          <p>Your points: {{ currentRoundResult.points }}</p>
+          <p class="modal__container__text--highlight">Your points: {{ currentRoundResult.points }}</p>
         </div>
         <button @click="onClose">OK</button>
       </div>
@@ -128,17 +130,22 @@ $mask-brightness: 0.5;
     }
 
     &__text {
-      font-size: rem(18px);
+      font-size: rem(16px);
       font-weight: 700;
       text-align: center;
-      margin: 30px 0 0;
+      margin: 30px 0 5px;
       @include has-min-width("sm") {
-        font-size: rem(24px);
+        font-size: rem(22px);
         font-weight: 400;
         margin-bottom: 5px;
       }
+
+      &--highlight {
+        text-decoration: underline;
+      }
+
       & p {
-        padding-bottom: 15px;
+        padding-bottom: 10px;
       }
     }
   }
