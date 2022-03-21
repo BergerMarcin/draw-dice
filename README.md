@@ -1,11 +1,21 @@
 # Draw Dice Game
 
+> > ***To start*** in development mode:
+> > - ask developer for `.env` file
+> > - start CORS with settings:
+> >    - for at least `GET` method, 
+> >    - with `included` "Access-Control-Allow-Header" 
+> >    - with `origin` value of "Access-Control-Allow-Origin" settings)
+
+<br/><hr/>
+
 # TODO:
  - buttons click animation 
  - downloading spinner / drawing dice
 
+<br/><hr/>
+
 # Recruitment assignment
-----
 
 The task is to develop a simple game utilizing API http://roll.diceapi.com/ or https://deckofcardsapi.com/ .
 
@@ -41,7 +51,6 @@ yarn install
 ```
 yarn serve
 ```
-> > Please start CORS plugin in the browser or run browser with disabled protections
 
 ### Compiles and minifies for production
 ```

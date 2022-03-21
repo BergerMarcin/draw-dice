@@ -3,10 +3,15 @@
 .swal2-popup {
   border-radius: 0;
 }
-.swal2-title {
+.swal2-title,
+.swal2-html-container {
   color: $text-color;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   font-size: rem(24px);
+}
+//text message
+.swal2-html-container {
+  font-size: rem(20px);
 }
 .swal2-styled.swal2-confirm,
 .swal2-styled.swal2-deny {

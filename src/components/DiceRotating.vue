@@ -91,9 +91,7 @@ export default {
     border: 2px solid $dice-border;
     background: $dice-background;
     color: white;
-    font-size: 40px;
-    font-weight: bold;
-    line-height: 100px;
+    font-size: 12px;
     text-align: center;
   }
 }

@@ -20,7 +20,7 @@ export const showWarning = async function (msg) {
 
 export const showError = async function (msg) {
   return Swal.fire({
-    title: "Error Message",
+    title: "Error",
     text: msg,
     icon: "error",
     showCancelButton: false,
