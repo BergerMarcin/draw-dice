@@ -1,3 +1,7 @@
+import * as variablesFromScss from "../scss/variables.module.scss";
+
+export const APP_BACKGROUND = variablesFromScss.appBackground;
+
 export const STORAGE_KEY = "draw_dice_results";
 
 /* ---------------- GAME ----------------- */

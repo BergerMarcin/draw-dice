@@ -1,0 +1,5 @@
+// This file export variables/constants shared with JS to have 1-source-of-truth of styling parameters @ SCSS
+
+@import "abstract/colors";
+
+:export {appBackground: $app-background}
