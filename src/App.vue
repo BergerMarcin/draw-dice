@@ -5,7 +5,7 @@
     <DiceRotating />
 
     <section>
-      <button @click="startNewGame">Start New Game</button>
+      <button @click="startNewGame" type="button">Start New Game</button>
     </section>
 
     <Round @nextDrawHigher="finalizeRound(choiceType.HIGHER)" @nextDrawLower="finalizeRound(choiceType.LOWER)" />

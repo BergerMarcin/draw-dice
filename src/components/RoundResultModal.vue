@@ -17,7 +17,7 @@
           <p>Draw: {{ currentRoundResult.draw }}</p>
           <p class="modal__container__text--highlight">Your points: {{ currentRoundResult.points }}</p>
         </div>
-        <button @click="onClose">OK</button>
+        <button @click="onClose" type="button">OK</button>
       </div>
     </div>
   </transition>

@@ -2,37 +2,58 @@
 @import "./box-shadow";
 
 @mixin app-button {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 3rem;
   width: 100px;
+  overflow: hidden;
   background-color: $btn-color;
   font-size: rem(14px);
   font-weight: 600;
   line-height: rem(18px);
-  border-radius: 0;
-  border: 2px solid transparent;
+  border: none;
   @include box-shadow;
   cursor: pointer;
   transition: filter 0.3s ease;
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: 50%;
+    left: 50%;
+    transform-style: flat;
+    transform: translate3d(-50%, -50%, 0);
+    background: rgba($black, 0.1);
+    border-radius: 50%;
+    transition: width 0.2s ease, height 0.2s ease;
+  }
 
   &:disabled {
     background: $gray-300;
   }
 
-  @include has-min-width("sm") {
+  @include has-min-width("xxs") {
     font-size: rem(16px);
     margin-bottom: 0;
     width: 250px;
   }
 
   @include can-hover() {
-    &:not(:disabled) {
-      &:hover {
-        filter: brightness(0.8);
-        @include box-shadow-hover;
-      }
+    &:not(:disabled):not(&:active):hover {
+      filter: brightness(0.9);
+      @include box-shadow-hover;
+    }
+  }
+
+  &:active {
+    @include box-shadow-active;
+    &::after {
+      width: 300px;
+      height: 300px;
     }
   }
 }

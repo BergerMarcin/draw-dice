@@ -10,7 +10,6 @@
 <br/><hr/>
 
 # TODO:
- - buttons click animation 
  - downloading spinner / drawing dice
 
 <br/><hr/>
