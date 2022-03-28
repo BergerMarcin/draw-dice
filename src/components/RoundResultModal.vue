@@ -116,8 +116,20 @@ $mask-brightness: 0.5;
     }
 
     .modal-icon {
-      transform: scale(1.3);
+      filter: drop-shadow(1.5px 2.5px 1px rgb($black, 0.5));
+      transition: width 0.2s ease, height 0.2s ease;
+      transform: scale(1.5);
       cursor: pointer;
+
+      @include can-hover() {
+        &:not(&:active):hover {
+          transform: scale(2);
+        }
+      }
+
+      &:active {
+        transform: scale(3);
+      }
     }
 
     &__img {
