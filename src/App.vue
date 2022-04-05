@@ -46,17 +46,21 @@ export default {
 
   async created() {
     this.loadResults();
-    if (!this.areResultsValid || (this.currentRoundNumber >= MAX_ROUNDS && this.currentRoundResult.draw !== null)) {
-      await this.startFirstGame();
-      return;
-    }
-    await showConfirmation("Would you like to continue saved game?").then(async (result) => {
-      if (result.isDenied) await this.startFirstGame();
-    });
+    await this.autoStart();
   },
 
   methods: {
     ...mapActions(["loadResults", "resetResults", "setNewGame", "setNewRound", "updateCurrentRound", "setModalText"]),
+
+    async autoStart() {
+      if (!this.areResultsValid || (this.currentRoundNumber >= MAX_ROUNDS && this.currentRoundResult.draw !== null)) {
+        await this.startFirstGame();
+        return;
+      }
+      await showConfirmation("Would you like to continue saved game?").then(async (result) => {
+        if (result.isDenied) await this.startFirstGame();
+      });
+    },
 
     async startFirstGame() {
       if (!this.areResultsValid) await this.resetResults();

@@ -25,6 +25,7 @@ export default {
 <style lang="scss" scoped>
 .round {
   width: 80%;
+  max-width: 700px;
   margin-left: auto;
   margin-right: auto;
   padding: 30px 10px;
