@@ -136,7 +136,13 @@ body {
   min-height: 100vh;
   padding: 0;
   margin: 0;
-  background: $app-background;
+  background: $app-background-basic;
+  background: radial-gradient(
+    circle,
+    $app-background-center 0%,
+    $app-background-basic 60%,
+    $app-background-outside 100%
+  );
 }
 
 #app {
