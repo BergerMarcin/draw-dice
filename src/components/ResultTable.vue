@@ -3,23 +3,23 @@
     <h3>Round Results</h3>
     <div v-if="areResultsValid" class="results__table-container">
       <table>
-        <tr>
+        <tr class="header">
           <th scope="col">Round</th>
           <th scope="col">Previous Draw</th>
           <th scope="col">Choice</th>
           <th scope="col">Dice Draw</th>
           <th scope="col">Points</th>
         </tr>
-        <tr v-for="(result, index) in currentGameResults" :key="`currentGameResults-result-${index + 1}`">
+        <tr v-for="(result, index) in currentGameResults" :key="`currentGameResults-result-${index + 1}`" class="data">
           <td>{{ index + 1 }}</td>
           <td>{{ result.previousDraw }}</td>
           <td>{{ result.choice !== null ? result.choice : "..." }}</td>
           <td>{{ result.draw !== null ? result.draw : "..." }}</td>
           <td>{{ result.points !== null ? result.points : "..." }}</td>
         </tr>
-        <tr class="score">
+        <tr class="summary">
           <td colspan="4">Game Score:</td>
-          <td class="score__value">{{ currentGameScore }}</td>
+          <td>{{ currentGameScore }}</td>
         </tr>
       </table>
     </div>
@@ -56,6 +56,7 @@ export default {
       margin-left: auto;
       margin-right: auto;
       border: 1px solid $border;
+      border-radius: 15px;
       @include box-shadow;
     }
 
@@ -78,9 +79,9 @@ export default {
       @include has-min-width("xs") {
         padding: 5px 10px;
       }
-      backdrop-filter: brightness(110%);
-      &:nth-child(2n+1):not(.score > td) {
-        backdrop-filter: brightness(125%);
+      background: $table-col-odd-background;
+      &:nth-child(2n) {
+        background: $table-col-even-background;
       }
     }
 
@@ -88,9 +89,38 @@ export default {
       font-weight: 600;
     }
 
-    .score {
+    .header {
+      th {
+        padding-top: 8px;
+        //padding-bottom: 10px;
+        &:first-child {
+          border-radius: 15px 0 0 0;
+        }
+        &:last-child {
+          border-radius: 0 15px 0 0;
+        }
+      }
+    }
+
+    .data {
+      td {
+        padding-top: 5px;
+      }
+    }
+
+    .summary {
       color: $white;
-      background: $text-color;
+      td {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background: $table-score-background;
+        &:first-child {
+          border-radius: 0 0 0 15px;
+        }
+        &:last-child {
+          border-radius: 0 0 15px 0;
+        }
+      }
     }
   }
 }

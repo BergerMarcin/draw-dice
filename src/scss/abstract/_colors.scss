@@ -12,6 +12,8 @@ $blue-800: #2C3E50;
 $green-100: #08A130;
 $green-200: #04912A;
 $green-300: #038225;
+$green-330: #078328;
+$green-360: #077323;
 $green-400: #066920;
 $green-700: #034A16;
 $green-800: #024012;
@@ -19,12 +21,20 @@ $green-900: #052517;
 $red-300: #AA0000;
 $red-700: #800000;
 
+
 $app-background: $green-400;
 $text-color: $blue-500;
 $btn-color: $green-100;
 $modal-color: $green-300;
+
 $border: $gray;
+
 $shadow: $green-700;
 $shadow-on-hover: $green-700;
+
 $dice-background: $red-300;
 $dice-border: $red-700;
+
+$table-col-odd-background: $green-360;
+$table-col-even-background: $green-330;
+$table-score-background: $blue-500;

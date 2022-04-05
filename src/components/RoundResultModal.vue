@@ -97,7 +97,7 @@ $mask-brightness: 0.5;
   left: 50%;
   width: 70%;
   padding: 15px 15px 25px;
-  border-radius: 10px;
+  border-radius: 15px;
   background: $modal-color;
   @include box-shadow;
   transform: translate(-50%, -50%);
