@@ -10,7 +10,7 @@
 <br/><hr/>
 
 # TODO:
- - downloading spinner / drawing dice
+ - icon arrow-up & -down
 
 <br/><hr/>
 

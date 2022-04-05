@@ -102,8 +102,8 @@ $mask-brightness: 0.5;
   @include box-shadow;
   transform: translate(-50%, -50%);
   @include has-min-width("sm") {
+    max-width: 750px;
     padding: 20px 20px 35px;
-    max-width: 60%;
   }
 
   &__icon {
@@ -156,6 +156,7 @@ $mask-brightness: 0.5;
       width: fit-content;
       margin: auto;
       padding: 5px 10px;
+      border-radius: 5px;
       color: $white;
       font-weight: 400;
       background: $text-color;
