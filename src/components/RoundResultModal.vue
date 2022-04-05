@@ -1,21 +1,21 @@
 <template>
   <transition name="fade">
-    <div v-if="showModal" class="modal__mask" @click="onOutsideModalClick">
+    <div v-if="showModal" class="modal-mask" @click="onOutsideModalClick">
       <!-- use @click.stop (to stop bubbling to the top of the DOM and stop trigger @click="onOutsideModalClick")-->
-      <div class="modal__container" @click.stop="onModalClick">
-        <div v-if="shouldDisplayCloseIcon" class="modal__container__icon">
+      <div class="modal-container" @click.stop="onModalClick">
+        <div v-if="shouldDisplayCloseIcon" class="modal-container__icon">
           <span @click="onCloseIconClick">
             <CloseIcon class="modal-icon" />
           </span>
         </div>
-        <div v-if="getDiceUrl" class="modal__container__img">
+        <div v-if="getDiceUrl" class="modal-container__img">
           <img :src="getDiceUrl" alt="Dice" />
         </div>
-        <div class="modal__container__text">
+        <div class="modal-container__text">
           <p>Previous draw: {{ currentRoundResult.previousDraw }}</p>
           <p>Your choice: {{ currentRoundResult.choice }}</p>
           <p>Draw: {{ currentRoundResult.draw }}</p>
-          <p class="modal__container__text--highlight">Your points: {{ currentRoundResult.points }}</p>
+          <p class="score">Round score: {{ currentRoundResult.points }}</p>
         </div>
         <button @click="onClose" type="button">OK</button>
       </div>
@@ -81,84 +81,88 @@ $mask-brightness: 0.5;
   opacity: 0;
 }
 
-.modal {
-  &__mask {
-    @include animation-backdrop($animation-duration, $mask-brightness);
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    backdrop-filter: brightness($mask-brightness);
+.modal-mask {
+  @include animation-backdrop($animation-duration, $mask-brightness);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: brightness($mask-brightness);
+}
+
+.modal-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 70%;
+  padding: 15px 15px 25px;
+  border-radius: 10px;
+  background: $modal-color;
+  @include box-shadow;
+  transform: translate(-50%, -50%);
+  @include has-min-width("sm") {
+    padding: 20px 20px 35px;
+    max-width: 60%;
   }
 
-  &__container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: $modal-color;
-    padding: 15px 15px 25px;
-    @include box-shadow;
-    width: 85%;
+  &__icon {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
     @include has-min-width("sm") {
-      padding: 20px 20px 35px;
-      max-width: 60%;
+      margin-bottom: 20px;
     }
+  }
 
-    &__icon {
-      display: flex;
-      justify-content: flex-end;
-      margin-bottom: 10px;
-      @include has-min-width("sm") {
-        margin-bottom: 20px;
+  .modal-icon {
+    filter: drop-shadow(1.5px 2.5px 1px rgb($black, 0.5));
+    transition: width 0.2s ease, height 0.2s ease;
+    transform: scale(1.5);
+    cursor: pointer;
+
+    @include can-hover() {
+      &:not(&:active):hover {
+        transform: scale(2);
       }
     }
 
-    .modal-icon {
-      filter: drop-shadow(1.5px 2.5px 1px rgb($black, 0.5));
-      transition: width 0.2s ease, height 0.2s ease;
-      transform: scale(1.5);
-      cursor: pointer;
+    &:active {
+      transform: scale(3);
+    }
+  }
 
-      @include can-hover() {
-        &:not(&:active):hover {
-          transform: scale(2);
-        }
-      }
+  &__img {
+    width: 125px;
+    height: 125px;
+    margin: auto;
+    border: 2px solid $dice-border;
+    background: $dice-background;
+    @include box-shadow;
+  }
 
-      &:active {
-        transform: scale(3);
-      }
+  &__text {
+    font-size: rem(16px);
+    font-weight: 700;
+    text-align: center;
+    margin: 30px 0 25px;
+    @include has-min-width("xs") {
+      font-size: rem(22px);
+      font-weight: 400;
+      //margin-bottom: 25px;
     }
 
-    &__img {
-      width: 125px;
-      height: 125px;
+    .score {
+      width: fit-content;
       margin: auto;
-      border: 2px solid $dice-border;
-      background: $dice-background;
-      @include box-shadow;
+      padding: 5px 10px;
+      color: $white;
+      font-weight: 400;
+      background: $text-color;
     }
 
-    &__text {
-      font-size: rem(16px);
-      font-weight: 700;
-      text-align: center;
-      margin: 30px 0 5px;
-      @include has-min-width("sm") {
-        font-size: rem(22px);
-        font-weight: 400;
-        margin-bottom: 5px;
-      }
-
-      &--highlight {
-        text-decoration: underline;
-      }
-
-      & p {
-        padding-bottom: 10px;
-      }
+    & p {
+      padding-bottom: 10px;
     }
   }
 }

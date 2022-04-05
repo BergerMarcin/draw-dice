@@ -19,7 +19,7 @@
         </tr>
         <tr class="score">
           <td colspan="4">Game Score:</td>
-          <td>{{ currentGameScore }}</td>
+          <td class="score__value">{{ currentGameScore }}</td>
         </tr>
       </table>
     </div>
@@ -55,14 +55,14 @@ export default {
     table {
       margin-left: auto;
       margin-right: auto;
+      border: 1px solid $border;
       @include box-shadow;
     }
 
     table,
     th,
     td {
-      border: 1px solid $border;
-      border-spacing: 1px;
+      border-spacing: 0;
       font-size: 12px;
       @include has-min-width("xs") {
         font-size: 14px;
@@ -78,10 +78,19 @@ export default {
       @include has-min-width("xs") {
         padding: 5px 10px;
       }
+      backdrop-filter: brightness(110%);
+      &:nth-child(2n+1):not(.score > td) {
+        backdrop-filter: brightness(125%);
+      }
+    }
+
+    th {
+      font-weight: 600;
     }
 
     .score {
-      font-weight: 700;
+      color: $white;
+      background: $text-color;
     }
   }
 }
