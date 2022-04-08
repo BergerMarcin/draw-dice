@@ -1,0 +1,8 @@
+#!/bin/sh
+echo "Husky STARTED! :)"
+. "$(dirname "$0")/_/husky.sh"
+. "$(dirname "$0")/common.sh"   # preventive script for yarn on Win with Git Bash
+
+yarn lint
+#yarn jest
+#yarn prettier
