@@ -1,7 +1,9 @@
 {
-  "name": "draw-dice-game",
+  "name": "draw-dice",
   "version": "0.1.0",
-  "private": true,
+  "description": "Just simple game with multiple-development-tools. Kind of boilerplate or playground with development-tools",
+  "author": "Marcin Berger <marcin.berger@wp.pl>",
+  "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
