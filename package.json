@@ -6,7 +6,9 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prettier": "prettier --write .",
+    "prettier-check": "prettier --check ."
   },
   "dependencies": {
     "axios": "^0.26.0",
@@ -25,6 +27,7 @@
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
     "husky": "^7.0.0",
+    "prettier": "^2.6.2",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
@@ -40,6 +43,9 @@
       "parser": "babel-eslint"
     },
     "rules": {}
+  },
+  "lint-staged": {
+    "**/*": "prettier --check --ignore-unknown"
   },
   "browserslist": [
     "> 1%",

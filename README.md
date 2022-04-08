@@ -43,7 +43,8 @@ The task is to develop a simple game utilizing API http://roll.diceapi.com/ or h
 
 ## Project setup
 ```
-yarn install
+yarn
+yarn prepare  // to install husky
 ```
 
 ### Compiles and hot-reloads for development
