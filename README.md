@@ -50,7 +50,10 @@ yarn
 yarn prepare  // to install husky
 ```
 
-> > To use git pre-commit of husky @ Webstorm/Idea for Win check Webstorm/Idea setting In "Version Control > Git > Path to Git executable" to change “C:\Program Files\Git\mingw64\bin\git.exe” by “C:\Program Files\Git\cmd\git.exe” (https://youtrack.jetbrains.com/issue/IDEA-214629)
+> > To use git pre-commit of husky @ Webstorm/Idea for Win:
+> >
+> > - check Webstorm/Idea setting @ "Version Control > Git > Path to Git executable" which should be “C:\Program Files\Git\cmd\git.exe” (https://youtrack.jetbrains.com/issue/IDEA-214629)
+> > - open GIT-console !!! (not terminal) to read commit)
 
 ### Compiles and hot-reloads for development
 
