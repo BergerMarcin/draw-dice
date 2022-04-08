@@ -50,12 +50,7 @@ yarn
 yarn prepare  // to install husky
 ```
 
-Add/check `.huskyrc` file to your root with content:
-
-```
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-```
+> > To use git pre-commit of husky @ Webstorm/Idea for Win check Webstorm/Idea setting In "Version Control > Git > Path to Git executable" to change “C:\Program Files\Git\mingw64\bin\git.exe” by “C:\Program Files\Git\cmd\git.exe” (https://youtrack.jetbrains.com/issue/IDEA-214629)
 
 ### Compiles and hot-reloads for development
 
