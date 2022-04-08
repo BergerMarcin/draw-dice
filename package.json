@@ -44,9 +44,6 @@
     },
     "rules": {}
   },
-  "lint-staged": {
-    "**/*": "prettier --check --ignore-unknown"
-  },
   "browserslist": [
     "> 1%",
     "last 2 versions",
