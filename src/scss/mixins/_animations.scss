@@ -5,11 +5,11 @@
   }
   .fade-enter,
   .fade-leave-to {
-    @content
+    @content;
   }
 }
 
-@mixin animation-backdrop($time, $brightness){
+@mixin animation-backdrop($time, $brightness) {
   animation: $time backdrop;
 
   @keyframes backdrop {

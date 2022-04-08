@@ -59,6 +59,6 @@ export const diceApiMixin = {
         return "";
       }
       return urlWithPathname;
-    }
+    },
   },
 };

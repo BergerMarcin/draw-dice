@@ -1,16 +1,18 @@
 # Draw Dice Game
 
-> > ***To start*** in development mode:
+> > **_To start_** in development mode:
+> >
 > > - ask developer for `.env` file
 > > - start CORS with settings:
-> >    - for at least `GET` method, 
-> >    - with `included` "Access-Control-Allow-Header" 
-> >    - with `origin` value of "Access-Control-Allow-Origin" settings)
+> >   - for at least `GET` method,
+> >   - with `included` "Access-Control-Allow-Header"
+> >   - with `origin` value of "Access-Control-Allow-Origin" settings)
 
 <br/><hr/>
 
 # TODO:
- - icon arrow-up & -down
+
+- icon arrow-up & -down
 
 <br/><hr/>
 
@@ -42,25 +44,30 @@ The task is to develop a simple game utilizing API http://roll.diceapi.com/ or h
 <hr/>
 
 ## Project setup
+
 ```
 yarn
 yarn prepare  // to install husky
 ```
 
 ### Compiles and hot-reloads for development
+
 ```
 yarn serve
 ```
 
 ### Compiles and minifies for production
+
 ```
 yarn build
 ```
 
 ### Lints and fixes files
+
 ```
 yarn lint
 ```
 
 ### Customize configuration
+
 See [Configuration Reference](https://cli.vuejs.org/config/).

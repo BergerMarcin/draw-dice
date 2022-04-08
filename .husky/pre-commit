@@ -6,4 +6,4 @@ echo "Husky STARTED!"
 yarn prettier-check
 yarn lint
 #yarn jest
-echo "Husky SUCCEEDED! :)"
+echo "!!! Husky SUCCEEDED !!! :)"
