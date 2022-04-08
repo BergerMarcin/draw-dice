@@ -50,6 +50,13 @@ yarn
 yarn prepare  // to install husky
 ```
 
+Add/check `.huskyrc` file to your root with content:
+
+```
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+```
+
 ### Compiles and hot-reloads for development
 
 ```
