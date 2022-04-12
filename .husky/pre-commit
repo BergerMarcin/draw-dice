@@ -5,5 +5,5 @@ echo "Husky STARTED!"
 
 yarn prettier-check
 yarn lint
-#yarn jest
-echo "!!! Husky SUCCEEDED !!! :)"
+yarn test:unit
+echo "!!! Git pre-commit check with Husky SUCCEEDED !!! :)"

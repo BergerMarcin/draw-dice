@@ -76,3 +76,9 @@ yarn lint
 ### Customize configuration
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Vue Test Utils with Jest
+
+Thanks to:
+
+https://v1.test-utils.vuejs.org/
