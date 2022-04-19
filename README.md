@@ -12,6 +12,7 @@
 
 # TODO:
 
+- fix axios/fetch test - issue with plugin or CORS
 - icon arrow-up & -down
 
 <br/><hr/>

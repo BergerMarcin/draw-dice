@@ -3,7 +3,6 @@ import App from "@/App.vue";
 import Vuex from "vuex";
 
 const localVue = createLocalVue();
-
 localVue.use(Vuex);
 
 describe("App.vue", () => {
