@@ -42,6 +42,45 @@ describe("diceApiMixin.js", () => {
     expect(wrapper.vm.constructUrl(API_HOST_DRAW_SUFFIX_URIS).toString()).toEqual(url);
   });
 
+  // it("test1", () => {
+  //   var createCORSRequest = function (method, url) {
+  //     var xhr = new XMLHttpRequest();
+  //     if ("withCredentials" in xhr) {
+  //       // Most browsers.
+  //       xhr.open(method, url, true);
+  //     } else if (typeof XDomainRequest != "undefined") {
+  //       // IE8 & IE9
+  //       xhr = new XDomainRequest();
+  //       xhr.open(method, url);
+  //     } else {
+  //       // CORS not supported.
+  //       xhr = null;
+  //     }
+  //     return xhr;
+  //   };
+  //
+  //   var url = "http://roll.diceapi.com/json/d6";
+  //   var method = "GET";
+  //   var xhr = createCORSRequest(method, url);
+  //
+  //   xhr.onload = function () {
+  //     // Success code goes here.
+  //     console.log("this.response: ", JSON.parse(this.response));
+  //     console.log("this.responseText: ", JSON.parse(this.responseText));
+  //   };
+  //
+  //
+  //   xhr.onerror = function () {
+  //     // Error code goes here.
+  //   };
+  //
+  //   xhr.send();
+  //
+  //   console.log("xhr: ", xhr);
+  //
+  //   expect(true).toBeTruthy();
+  // });
+
   it("test2", async () => {
     // TODO: try to update to Axios object like Axios plugin
     // below acc. https://vhudyma-blog.eu/3-ways-to-mock-axios-in-jest/ and https://stackoverflow.com/questions/45016033/how-do-i-test-axios-in-jest
