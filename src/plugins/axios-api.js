@@ -17,7 +17,7 @@ const api = axios.create({
 //   return config;
 // });
 
-api.simple = async function (method, resource, data = {}, callback = () => true) {
+api.simple = async function (method, resource, data = {}, callback = async () => true) {
   return new Promise((resolve, reject) => {
     let response;
     let error;
