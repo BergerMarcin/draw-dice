@@ -74,6 +74,9 @@ server.on("request", async (req, res) => {
       res.statusCode = 200;
       res.setHeader("Content-Length", Buffer.byteLength(body));
       res.setHeader("Content-Type", "text/plain");
+      res.setHeader("Access-Control-Allow-Origin", "*");
+      res.setHeader("Access-Control-Allow-Headers", "content-type");
+      res.setHeader("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, HEAD, OPTIONS");
       res.end(body);
       console.log(`This server response: Status: ${res.statusCode}. Sent response: ${body}`);
     })
