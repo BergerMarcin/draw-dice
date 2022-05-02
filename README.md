@@ -12,7 +12,7 @@
 
 # TODO:
 
-- fix axios/fetch test - issue with plugin or CORS
+- fix api/fetch test - issue with axios module mocking due to non-standard axios implementation with `axios.create` of util `axios-api.js`
 - icon arrow-up & -down
 
 <br/><hr/>

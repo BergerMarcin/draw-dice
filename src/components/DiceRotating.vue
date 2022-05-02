@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { API_HOST_IMG_SUFFIX_URIS } from "@/helpers/constants";
+import { API_PATH_IMG } from "@/helpers/constants";
 import { diceApiMixin } from "@/mixins/diceApiMixin";
 
 export default {
@@ -48,7 +48,7 @@ export default {
 
   methods: {
     getDiceUrl(points) {
-      const url = this.getDiceImgUrlPath(API_HOST_IMG_SUFFIX_URIS);
+      const url = this.getDiceImgUrlPath(API_PATH_IMG);
       if (!url || !points) return "";
       return `${url}/${points}.png`;
     },

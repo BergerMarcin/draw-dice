@@ -1,4 +1,4 @@
-import axios from "../plugins/axios-api";
+import api from "../utils/axios-api";
 import { API_ERROR } from "@/helpers/constants";
 import { mapGetters } from "vuex";
 
@@ -34,7 +34,7 @@ export const diceApiMixin = {
         throw new Error(error);
       }
 
-      return axios
+      return api
         .simple("GET", urlWithPathname)
         .then(async (resp) => {
           if (this.isDev) console.log(`Response from ${urlWithPathname}: `, resp);

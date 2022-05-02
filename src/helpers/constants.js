@@ -22,9 +22,9 @@ export const SCORE_FRACTION_DIGITS = 1;
 
 /* ---------------- API ----------------- */
 
-export const API_HOST_DRAW_SUFFIX_URIS = ["json", "d6"];
+export const API_PATH_DRAW = []; // decided to use only host for cors-server without pathname (previously: ["json", "d6"])
 
-export const API_HOST_IMG_SUFFIX_URIS = ["images", "poorly-drawn", "d6"];
+export const API_PATH_IMG = ["images", "poorly-drawn", "d6"];
 
 export const API_ERROR = {
   UNKNOWN: {

@@ -23,7 +23,7 @@ import Round from "@/components/Round";
 import ResultTable from "@/components/ResultTable";
 import RoundResultModal from "@/components/RoundResultModal.vue";
 import { mapState, mapActions, mapGetters } from "vuex";
-import { API_ERROR, API_HOST_DRAW_SUFFIX_URIS, CHOICE, CHOICE_POINTS, MAX_ROUNDS } from "@/helpers/constants";
+import { API_ERROR, API_PATH_DRAW, CHOICE, CHOICE_POINTS, MAX_ROUNDS } from "@/helpers/constants";
 import { showWarning, showConfirmation, showError } from "@/services/message-service";
 import DiceRotating from "./components/DiceRotating";
 
@@ -112,7 +112,7 @@ export default {
     async drawDice(prevDraw) {
       let newDraw = prevDraw;
       while (newDraw === prevDraw) {
-        newDraw = await this.getDiceValue(API_HOST_DRAW_SUFFIX_URIS).catch(async (error) => {
+        newDraw = await this.getDiceValue(API_PATH_DRAW).catch(async (error) => {
           await showError(error?.toString().slice(7) || API_ERROR.UNKNOWN.USER_MSG);
           return prevDraw;
         });

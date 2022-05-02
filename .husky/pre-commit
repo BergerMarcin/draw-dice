@@ -5,6 +5,7 @@ echo "Husky STARTED!"
 
 yarn prettier-check
 yarn lint
-#TODO: after fixing api-fetch-axios-test restore below check
-#yarn test:unit
+#TODO: remove after fixing axios.create of axios-module-mocking @ `dice-api-mixin.spec.js` remove start cors-server below check
+#yarn cors-server
+yarn test:unit-win
 echo "!!! Git pre-commit check with Husky SUCCEEDED !!! :)"

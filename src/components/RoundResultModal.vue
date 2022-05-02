@@ -26,7 +26,7 @@
 <script>
 import { mapGetters } from "vuex";
 import CloseIcon from "@/components/svgs/CloseIcon.vue";
-import { API_HOST_IMG_SUFFIX_URIS } from "@/helpers/constants";
+import { API_PATH_IMG } from "@/helpers/constants";
 import { diceApiMixin } from "@/mixins/diceApiMixin";
 
 export default {
@@ -47,7 +47,7 @@ export default {
     ...mapGetters(["currentRoundResult"]),
 
     getDiceUrl() {
-      const url = this.getDiceImgUrlPath(API_HOST_IMG_SUFFIX_URIS);
+      const url = this.getDiceImgUrlPath(API_PATH_IMG);
       if (!url || this.currentRoundResult.draw === null) return "";
       return `${url}/${this.currentRoundResult.draw}.png`;
     },

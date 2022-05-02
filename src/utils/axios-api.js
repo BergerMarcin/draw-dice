@@ -3,17 +3,15 @@ import Vue from "vue";
 
 const api = axios.create({
   baseURL: process.env.API_HOST,
+  // For future purpose
   // headers: {
-  //   "Content-Type": "application/json",
-  //   "Access-Control-Allow-Credentials": "true",
-  //   "Access-Control-Allow-Origin": "*",
-  //   "Access-Control-Allow-Methods": "GET",
-  //   "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+  //   "Content-Type": "application/json; charset=utf-8",
   // },
 });
 
+// For future purpose (like for example JWT @ store)
 // api.interceptors.request.use((config) => {
-//   config.headers.common = { ...config.headers.common }; // for the future with JWT: , ...store.getters.authHeader
+//   config.headers.common = { ...config.headers.common, ...store.getters.authHeader };
 //   return config;
 // });
 

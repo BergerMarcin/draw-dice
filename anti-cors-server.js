@@ -1,5 +1,5 @@
 /**
- * Start server:
+ * Start proxy, anti-CORS server:
  * `node anti-cors-server.js`
  * Test server:
  * `curl -i http://127.0.0.1:3000/`
@@ -73,11 +73,12 @@ server.on("request", async (req, res) => {
       const body = response;
       res.statusCode = 200;
       res.setHeader("Content-Length", Buffer.byteLength(body));
-      res.setHeader("Content-Type", "text/plain");
+      res.setHeader("Content-Type", "application/json");
       res.setHeader("Access-Control-Allow-Origin", "*");
       res.setHeader("Access-Control-Allow-Headers", "content-type");
-      res.setHeader("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, HEAD, OPTIONS");
-      res.end(body);
+      res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
+      res.write(Buffer.from(body));
+      res.end();
       console.log(`This server response: Status: ${res.statusCode}. Sent response: ${body}`);
     })
     .catch((errorMsg) => {
