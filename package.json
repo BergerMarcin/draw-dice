@@ -14,7 +14,8 @@
     "prepare": "husky install",
     "prettier": "prettier --write .",
     "prettier-check": "prettier --check .",
-    "cors-server": "node anti-cors-server.js"
+    "cors-server": "node anti-cors-server.js",
+    "cors-server:test": "node anti-cors-server-test.js"
   },
   "dependencies": {
     "axios": "^0.26.0",

@@ -15,13 +15,15 @@ const diceUrl = "http://roll.diceapi.com/json/d6";
 /*--------- HELPERS -----------*/
 const getRequestForJson = (url) => {
   return new Promise((resolve, reject) => {
-    //TODO: validate url
+    let error;
+    if (!/^https?:\/\/[^\s$.?#].[^\s]*$/.test(url)) {
+      error = new Error(`Invalid URL: ${url}`);
+      return reject(error.message);
+    }
     http
       .get(url, (res) => {
         const { statusCode } = res;
         const contentType = res.headers["content-type"];
-
-        let error;
         // Any 2xx status code signals a successful response but here we're only checking for 200.
         if (statusCode !== 200) {
           error = new Error("Request Failed.\n" + `Status Code: ${statusCode}`);
