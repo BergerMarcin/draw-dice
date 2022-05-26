@@ -8,16 +8,3 @@
     @content;
   }
 }
-
-@mixin animation-backdrop($time, $brightness) {
-  animation: $time backdrop;
-
-  @keyframes backdrop {
-    0% {
-      backdrop-filter: brightness(1);
-    }
-    100% {
-      backdrop-filter: brightness($brightness);
-    }
-  }
-}

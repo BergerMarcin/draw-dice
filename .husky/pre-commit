@@ -6,6 +6,6 @@ echo "Husky STARTED!"
 yarn prettier-check
 yarn lint
 #TODO: change below to regular `yarn test:unit` after fixing axios.create of axios-module-mocking @ `dice-api-mixin.spec.js` remove start cors-server below check
-#below required to close cors-serer after unit-test to let git push
-yarn test:unit-win
+#below required to close manually cors-serer after unit-test finished (and then git push will be triggered)
+#yarn test:unit-win Required to find/create new server for dice-drawing
 echo "!!! Git pre-commit check with Husky SUCCEEDED !!! :)"

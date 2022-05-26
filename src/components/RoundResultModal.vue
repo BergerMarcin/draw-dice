@@ -1,8 +1,9 @@
 <template>
   <transition name="fade">
-    <div v-if="showModal" class="modal-mask" @click="onOutsideModalClick">
-      <!-- use @click.stop (to stop bubbling to the top of the DOM and stop trigger @click="onOutsideModalClick")-->
-      <div class="modal-container" @click.stop="onModalClick">
+    <!-- use @touchdown & @mousedown (it is better UX than @click; better for cases of selecting modal's text or input and moving mouse/touch outside modal) -->
+    <div v-if="showModal" class="modal-mask" @touchdown="onOutsideModalClick" @mousedown="onOutsideModalClick">
+      <!-- use @touchdown.stop & @mousedown.stop (to stop bubbling to the top of the DOM and stop trigger @click="onOutsideModalClick") -->
+      <div class="modal-container" @touchdown.stop="onModalClick" @mousedown.stop="onModalClick">
         <div v-if="shouldDisplayCloseIcon" class="modal-container__icon">
           <span @click="onCloseIconClick">
             <CloseIcon class="modal-icon" />
@@ -75,20 +76,24 @@ export default {
 
 <style lang="scss" scoped>
 $animation-duration: 0.5s;
-$mask-brightness: 0.5;
+$mask-backdrop-filter: brightness(0.5); //mask style for all main-browsers except Firefox
+$mask-background-color: rgba(50, 50, 50, 0.6); //mask style for Firefox
 
 @include animation-fade($animation-duration) {
   opacity: 0;
 }
 
 .modal-mask {
-  @include animation-backdrop($animation-duration, $mask-brightness);
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  backdrop-filter: brightness($mask-brightness);
+  backdrop-filter: $mask-backdrop-filter;
+  // For Firefox
+  @supports not (backdrop-filter: $mask-backdrop-filter) {
+    background-color: $mask-background-color;
+  }
 }
 
 .modal-container {
