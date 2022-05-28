@@ -20,7 +20,7 @@
   border-radius: 15px;
   @include box-shadow;
   cursor: pointer;
-  transition: filter 0.3s ease, 1s ease;
+  transition: background-color 1.5s ease, filter 0.3s ease;
 
   &::after {
     content: "";
@@ -39,8 +39,8 @@
   &:disabled {
     @include box-shadow-disabled;
     cursor: not-allowed;
-    background: $gray-300;
-    transition: 1s ease;
+    background-color: $gray-300;
+    transition: background-color 2s ease;
   }
 
   @include has-min-width("xxs") {

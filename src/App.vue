@@ -2,11 +2,11 @@
   <div id="app">
     <AppHeader msg="Guess Your Draw!" />
 
-    <DiceRotating />
-
     <section>
       <button @click="startNewGame" type="button" :disabled="isFetchingData">Start New Game</button>
     </section>
+
+    <DiceRotating />
 
     <Round @nextDrawHigher="finalizeRound(choiceType.HIGHER)" @nextDrawLower="finalizeRound(choiceType.LOWER)" />
 
@@ -47,6 +47,7 @@ export default {
   async created() {
     this.loadResults();
     await this.autoStart();
+    this.setIsFetchingData({ isFetchingData: false });
   },
 
   methods: {

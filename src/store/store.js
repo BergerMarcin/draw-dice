@@ -6,7 +6,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    isFetchingData: true, //true during API is responding. Required to inform end-user of fetching-data (by display spinner) and blocked for end-user some features (via disabling their button)
+    isFetchingData: false, //true during API is responding. Required to inform end-user of fetching-data (by display spinner) and blocked for end-user some features (via disabling their button)
     results: [],
   },
 
@@ -32,12 +32,15 @@ export default new Vuex.Store({
 
   actions: {
     loadResults(context) {
+      // setting `isFetchingData` for future change localStorage to API or slow-data-reading
+      context.commit("SET_IS_FETCHING_DATA", { isFetchingData: true });
       const resultsRead = localStorage.getItem(STORAGE_KEY);
       const results = resultsRead ? JSON.parse(resultsRead) : [];
       context.commit("SET_RESULTS", { results });
+      context.commit("SET_IS_FETCHING_DATA", { isFetchingData: false });
     },
     saveResults(context) {
-      // setting isFetchingData for future change localStorage to API or slow-data-saving
+      // setting `isFetchingData` for future change localStorage to API or slow-data-saving
       context.commit("SET_IS_FETCHING_DATA", { isFetchingData: true });
       localStorage.setItem(STORAGE_KEY, JSON.stringify(context.state.results));
       context.commit("SET_IS_FETCHING_DATA", { isFetchingData: false });
