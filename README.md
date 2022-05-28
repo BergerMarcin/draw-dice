@@ -12,6 +12,7 @@
 
 # TODO:
 
+- create dice-api & server
 - fix api/fetch test - issue with axios module mocking due to non-standard axios implementation with `axios.create` of util `axios-api.js`
 - icon arrow-up & -down
 

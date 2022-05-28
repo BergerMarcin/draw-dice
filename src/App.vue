@@ -6,38 +6,41 @@
       <button @click="startNewGame" type="button" :disabled="isFetchingData">Start New Game</button>
     </section>
 
-    <DiceRotating />
+    <DiceRotating :show-box-shadow="!isFetchingData" />
 
     <Round @nextDrawHigher="finalizeRound(choiceType.HIGHER)" @nextDrawLower="finalizeRound(choiceType.LOWER)" />
 
     <ResultTable />
 
-    <RoundResultModal :show-modal="showModal" @close-result-modal="handleCloseResultModal" />
+    <RoundResultModal :show-modal="showResultModal" @close-result-modal="handleCloseResultModal" />
+
+    <SpinnerModal :show-modal="isFetchingData" />
   </div>
 </template>
 
 <script>
 import { diceApiMixin } from "@/mixins/diceApiMixin";
 import AppHeader from "@/components/AppHeader.vue";
-import Round from "@/components/Round";
-import ResultTable from "@/components/ResultTable";
+import DiceRotating from "@/components/DiceRotating.vue";
+import SpinnerModal from "@/components/SpinnerModal.vue";
+import Round from "@/components/Round.vue";
 import RoundResultModal from "@/components/RoundResultModal.vue";
+import ResultTable from "@/components/ResultTable.vue";
 import { mapMutations, mapActions, mapGetters } from "vuex";
 import { API_ERROR, API_PATH_DRAW, CHOICE, CHOICE_POINTS, MAX_ROUNDS } from "@/helpers/constants";
 import { showWarning, showConfirmation, showError } from "@/services/message-service";
-import DiceRotating from "./components/DiceRotating";
-import { DEFAULT_START_DRAW } from "./helpers/constants";
+import { DEFAULT_START_DRAW } from "@/helpers/constants";
 
 export default {
   name: "App",
 
-  components: { DiceRotating, AppHeader, Round, ResultTable, RoundResultModal },
+  components: { AppHeader, DiceRotating, Round, RoundResultModal, ResultTable, SpinnerModal },
 
   mixins: [diceApiMixin],
 
   data: () => ({
     choiceType: CHOICE,
-    showModal: false,
+    showResultModal: false,
   }),
 
   computed: {
@@ -100,10 +103,10 @@ export default {
           const points = this.calcPointsOfRound(choice, draw);
           const round = { ...this.currentRoundResult, draw, choice, points };
           await this.updateCurrentRound({ round });
-          this.showModal = true;
+          this.showResultModal = true;
         })
         .catch(() => {
-          //to catch error and therefore avoid showing in the browser's console v-on-Vue-error
+          //fake error-catch to avoid showing in the browser's console `v-on`-Vue-error
         });
     },
 
@@ -126,12 +129,11 @@ export default {
       while (newDraw === prevDraw) {
         newDraw = await this.getDiceValue(API_PATH_DRAW).catch(async (error) => {
           const errorMsg = error?.toString().slice(7) || API_ERROR.UNKNOWN.USER_MSG;
-          await showError(errorMsg);
           this.setIsFetchingData({ isFetchingData: false });
-          throw new Error(errorMsg);
-          // Below for test-purpose (to fake API)
-          // console.warn(errorMsg);
+          await showError(errorMsg);
+          // For test-purpose (to fake API and see result modal) uncomment below line and comment throwing-error
           // return Math.trunc(Math.random() * 6 + 1);
+          throw new Error(errorMsg);
         });
       }
       this.setIsFetchingData({ isFetchingData: false });
@@ -139,7 +141,7 @@ export default {
     },
 
     async handleCloseResultModal() {
-      this.showModal = false;
+      this.showResultModal = false;
       await this.startNewRoundOrNewGame();
     },
   },

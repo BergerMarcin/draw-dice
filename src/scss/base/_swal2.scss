@@ -1,22 +1,44 @@
 @import "../abstract/index";
 
+//popup container
 .swal2-popup {
+  @include box-shadow-swal2-popup;
+  border: 1px solid $border;
   border-radius: 15px;
 }
+
+//error-icon size and color
+.swal2-icon {
+  margin-top: 1em;
+  margin-bottom: 0;
+  transform: scale(0.7);
+  &.swal2-error {
+    border-color: $red-300;
+  }
+  &.swal2-error [class^="swal2-x-mark-line"] {
+    background-color: $red-300;
+  }
+}
+
+//header
 .swal2-title,
 .swal2-html-container {
   color: $text-color;
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  font-size: rem(24px);
-}
-//text message
-.swal2-html-container {
   font-size: rem(20px);
 }
+
+//text message
+.swal2-html-container {
+  font-size: rem(16px);
+  font-weight: 700;
+}
+
+//button
 .swal2-styled.swal2-confirm,
 .swal2-styled.swal2-deny {
   background: #3085d6;
-  border-radius: 0;
+  border-radius: 15px;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   @include can-hover() {
     &:not(:disabled) {

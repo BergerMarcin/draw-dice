@@ -1,4 +1,4 @@
-@mixin animation-fade($time) {
+@mixin transition-fade($time) {
   .fade-enter-active,
   .fade-leave-active {
     transition: opacity $time;
@@ -6,5 +6,18 @@
   .fade-enter,
   .fade-leave-to {
     @content;
+  }
+}
+
+@mixin animation-rotation($time) {
+  animation: $time rotation linear infinite;
+
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 }

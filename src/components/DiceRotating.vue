@@ -5,6 +5,7 @@
         v-for="wall in diceWalls"
         :key="wall.value"
         class="cube__face"
+        :class="showBoxShadow && 'cube__face--box-shadow'"
         :style="`transform: rotateX(${wall.rotateX}deg) rotateY(${wall.rotateY}deg) translateZ(50px)`"
       >
         <img :src="getDiceUrl(wall.value)" :alt="`Dice-Wall_${wall.description}-Points${wall.value}`" />
@@ -21,6 +22,10 @@ export default {
   name: "DiceRotating",
 
   mixins: [diceApiMixin],
+
+  props: {
+    showBoxShadow: { type: Boolean, default: true },
+  },
 
   data: () => ({
     cubeElement: HTMLElement,
@@ -82,7 +87,7 @@ export default {
   height: 100px;
   transform-style: preserve-3d;
   transform: translateZ(-50px);
-  transition: transform 1000ms linear;
+  transition: transform 1s linear;
 
   &__face {
     position: absolute;
@@ -93,6 +98,10 @@ export default {
     color: white;
     font-size: 12px;
     text-align: center;
+    transition: 0.5s ease;
+    &--box-shadow {
+      @include box-shadow-dice-rotating;
+    }
   }
 }
 </style>

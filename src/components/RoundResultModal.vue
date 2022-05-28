@@ -75,11 +75,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$animation-duration: 0.5s;
+$transition-fade-duration: 0.5s;
 $mask-backdrop-filter: brightness(0.5); //mask style for all main-browsers except Firefox
 $mask-background-color: rgba(50, 50, 50, 0.6); //mask style for Firefox
 
-@include animation-fade($animation-duration) {
+@include transition-fade($transition-fade-duration) {
   opacity: 0;
 }
 
@@ -100,12 +100,12 @@ $mask-background-color: rgba(50, 50, 50, 0.6); //mask style for Firefox
   position: absolute;
   top: 50%;
   left: 50%;
+  transform: translate(-50%, -50%);
   width: 70%;
   padding: 15px 15px 25px;
   border-radius: 15px;
-  background: $modal-color;
   @include box-shadow;
-  transform: translate(-50%, -50%);
+  background: $modal-color;
   @include has-min-width("sm") {
     max-width: 750px;
     padding: 20px 20px 35px;
