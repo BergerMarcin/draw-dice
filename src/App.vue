@@ -5,7 +5,7 @@
     <DiceRotating />
 
     <section>
-      <button @click="startNewGame" type="button">Start New Game</button>
+      <button @click="startNewGame" type="button" :disabled="isFetchingData">Start New Game</button>
     </section>
 
     <Round @nextDrawHigher="finalizeRound(choiceType.HIGHER)" @nextDrawLower="finalizeRound(choiceType.LOWER)" />
@@ -22,10 +22,11 @@ import AppHeader from "@/components/AppHeader.vue";
 import Round from "@/components/Round";
 import ResultTable from "@/components/ResultTable";
 import RoundResultModal from "@/components/RoundResultModal.vue";
-import { mapState, mapActions, mapGetters } from "vuex";
+import { mapMutations, mapActions, mapGetters } from "vuex";
 import { API_ERROR, API_PATH_DRAW, CHOICE, CHOICE_POINTS, MAX_ROUNDS } from "@/helpers/constants";
 import { showWarning, showConfirmation, showError } from "@/services/message-service";
 import DiceRotating from "./components/DiceRotating";
+import { DEFAULT_START_DRAW } from "./helpers/constants";
 
 export default {
   name: "App",
@@ -40,8 +41,7 @@ export default {
   }),
 
   computed: {
-    ...mapState(["results"]),
-    ...mapGetters(["areResultsValid", "currentRoundNumber", "currentRoundResult"]),
+    ...mapGetters(["isFetchingData", "areResultsValid", "currentRoundNumber", "currentRoundResult"]),
   },
 
   async created() {
@@ -50,6 +50,7 @@ export default {
   },
 
   methods: {
+    ...mapMutations({ setIsFetchingData: "SET_IS_FETCHING_DATA" }),
     ...mapActions(["loadResults", "resetResults", "setNewGame", "setNewRound", "updateCurrentRound", "setModalText"]),
 
     async autoStart() {
@@ -77,7 +78,11 @@ export default {
     },
 
     async startNewGame() {
-      const draw = await this.drawDice(0);
+      const draw = await this.drawDice(0).catch(() => {
+        // required to assign some start-draw-value to keep consistent in data.
+        // If API-connection (of draw) is restored it would be possible to continue game (as data would be consistent)
+        return DEFAULT_START_DRAW;
+      });
       const newGame = [{ previousDraw: draw, choice: null, draw: null, points: null }];
       await this.setNewGame({ newGame: newGame });
     },
@@ -88,12 +93,17 @@ export default {
     },
 
     async finalizeRound(choice) {
-      const draw = await this.drawDice(this.currentRoundResult.previousDraw);
-      const points = this.calcPointsOfRound(choice, draw);
-      const round = { ...this.currentRoundResult, draw, choice, points };
-      await this.updateCurrentRound({ round });
-
-      this.showModal = true;
+      await this.drawDice(this.currentRoundResult.previousDraw)
+        .then(async (resolve) => {
+          const draw = resolve;
+          const points = this.calcPointsOfRound(choice, draw);
+          const round = { ...this.currentRoundResult, draw, choice, points };
+          await this.updateCurrentRound({ round });
+          this.showModal = true;
+        })
+        .catch(() => {
+          //to catch error and therefore avoid showing in the browser's console v-on-Vue-error
+        });
     },
 
     calcPointsOfRound(choice, draw) {
@@ -110,13 +120,20 @@ export default {
     },
 
     async drawDice(prevDraw) {
+      this.setIsFetchingData({ isFetchingData: true });
       let newDraw = prevDraw;
       while (newDraw === prevDraw) {
         newDraw = await this.getDiceValue(API_PATH_DRAW).catch(async (error) => {
-          await showError(error?.toString().slice(7) || API_ERROR.UNKNOWN.USER_MSG);
-          return prevDraw;
+          const errorMsg = error?.toString().slice(7) || API_ERROR.UNKNOWN.USER_MSG;
+          await showError(errorMsg);
+          this.setIsFetchingData({ isFetchingData: false });
+          throw new Error(errorMsg);
+          // Below for test-purpose (to fake API)
+          // console.warn(errorMsg);
+          // return Math.trunc(Math.random() * 6 + 1);
         });
       }
+      this.setIsFetchingData({ isFetchingData: false });
       return newDraw;
     },
 

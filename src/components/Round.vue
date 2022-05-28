@@ -2,8 +2,8 @@
   <section class="round">
     <h3>Guess Next Draw!</h3>
     <div class="round__buttons">
-      <button @click="$emit('nextDrawHigher')" :disabled="!areResultsValid" type="button">↑ HIGHER next draw ↑</button>
-      <button @click="$emit('nextDrawLower')" :disabled="!areResultsValid" type="button">↓ LOWER next draw ↓</button>
+      <button @click="$emit('nextDrawHigher')" :disabled="isButtonDisabled" type="button">↑ HIGHER next draw ↑</button>
+      <button @click="$emit('nextDrawLower')" :disabled="isButtonDisabled" type="button">↓ LOWER next draw ↓</button>
     </div>
     <h4>Previous draw: {{ areResultsValid ? currentRoundResult.previousDraw : "Start currentGameResults first!" }}</h4>
     <h5>Remaining rounds: {{ remainingRoundNumber }}</h5>
@@ -17,7 +17,11 @@ export default {
   name: "Round",
 
   computed: {
-    ...mapGetters(["areResultsValid", "currentRoundResult", "remainingRoundNumber"]),
+    ...mapGetters(["isFetchingData", "areResultsValid", "currentRoundResult", "remainingRoundNumber"]),
+
+    isButtonDisabled() {
+      return !this.areResultsValid || this.isFetchingData;
+    },
   },
 };
 </script>
