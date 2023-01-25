@@ -12,8 +12,8 @@
     "test:unit-win": "start yarn cors-server & vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "prepare": "husky install",
-    "prettier": "prettier --write .",
-    "prettier-check": "prettier --check .",
+    "prettier": "prettier --check .",
+    "prettier-write": "prettier --write .",
     "cors-server": "node anti-cors-server.js",
     "cors-server:test": "node anti-cors-server-test.js"
   },

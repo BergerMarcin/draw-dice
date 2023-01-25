@@ -3,7 +3,7 @@ echo "Husky STARTED!"
 . "$(dirname "$0")/_/husky.sh"
 . "$(dirname "$0")/common.sh"   # preventive script for yarn on Win with Git Bash
 
-yarn prettier-check
+yarn prettier
 yarn lint
 #TODO: change below to regular `yarn test:unit` after fixing axios.create of axios-module-mocking @ `dice-api-mixin.spec.js` remove start cors-server below check
 #below required to close manually cors-serer after unit-test finished (and then git push will be triggered)
