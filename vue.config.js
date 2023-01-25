@@ -2,7 +2,8 @@ module.exports = {
   css: {
     loaderOptions: {
       scss: {
-        additionalData: `@import "~@/scss/index.scss";`,
+        // prettier-ignore
+        additionalData: "@import \"~@/scss/index.scss\";",
       },
     },
   },

@@ -31,8 +31,10 @@ export const API_PATH_IMG = ["images", "poorly-drawn", "d6"];
 
 export const API_ERROR = {
   UNKNOWN: {
-    DEV_MSG: 'Unknown error\n(code error "Unknown error")',
-    USER_MSG: 'Please contact HelpDesk (code error "Unknown error")',
+    // prettier-ignore
+    DEV_MSG: "Unknown error\n(code error \"Unknown error\")",
+    // prettier-ignore
+    USER_MSG: "Please contact HelpDesk (code error \"Unknown error\")",
   },
   NO_URL_HOST: {
     DEV_MSG: "No host URL, check process.env\n(code error A1)",

@@ -14,7 +14,7 @@ module.exports = {
   singleQuote: false,
   endOfLine: "lf",
   useTabs: false,
-  vueIndentScriptAndStyle: true,
+  vueIndentScriptAndStyle: false,
   htmlWhitespaceSensitivity: "ignore",
   requirePragma: false,
   insertPragma: false,

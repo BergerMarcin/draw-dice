@@ -9,11 +9,11 @@
 </template>
 
 <script>
-  import BaseSvg from "@/components/BaseSvg.vue";
+import BaseSvg from "@/components/BaseSvg.vue";
 
-  export default {
-    name: "CloseIcon",
+export default {
+  name: "CloseIcon",
 
-    components: { BaseSvg },
-  };
+  components: { BaseSvg },
+};
 </script>

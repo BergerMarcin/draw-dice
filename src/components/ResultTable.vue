@@ -28,99 +28,99 @@
 </template>
 
 <script>
-  import { mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 
-  export default {
-    name: "ResultTable",
+export default {
+  name: "ResultTable",
 
-    computed: {
-      ...mapGetters(["areResultsValid", "currentGameResults", "currentGameScore"]),
-    },
-  };
+  computed: {
+    ...mapGetters(["areResultsValid", "currentGameResults", "currentGameScore"]),
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  .results {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-    &__table-container {
-      max-width: 100%;
+  &__table-container {
+    max-width: 100%;
+    @include has-min-width("xs") {
+      max-width: 80%;
+    }
+
+    table {
+      margin-left: auto;
+      margin-right: auto;
+      border: 1px solid $border;
+      border-radius: 15px;
+      @include box-shadow;
+    }
+
+    table,
+    th,
+    td {
+      border-spacing: 0;
+      font-size: 12px;
       @include has-min-width("xs") {
-        max-width: 80%;
+        font-size: 14px;
       }
-
-      table {
-        margin-left: auto;
-        margin-right: auto;
-        border: 1px solid $border;
-        border-radius: 15px;
-        @include box-shadow;
+      @include has-min-width("sm") {
+        font-size: inherit;
       }
+    }
 
-      table,
-      th,
-      td {
-        border-spacing: 0;
-        font-size: 12px;
-        @include has-min-width("xs") {
-          font-size: 14px;
-        }
-        @include has-min-width("sm") {
-          font-size: inherit;
-        }
+    th,
+    td {
+      padding: 2px 5px;
+      @include has-min-width("xs") {
+        padding: 5px 10px;
       }
-
-      th,
-      td {
-        padding: 2px 5px;
-        @include has-min-width("xs") {
-          padding: 5px 10px;
-        }
-        background: $table-col-odd-background;
-        &:nth-child(2n) {
-          background: $table-col-even-background;
-        }
+      background: $table-col-odd-background;
+      &:nth-child(2n) {
+        background: $table-col-even-background;
       }
+    }
 
+    th {
+      font-weight: 600;
+    }
+
+    .header {
       th {
-        font-weight: 600;
-      }
-
-      .header {
-        th {
-          padding-top: 8px;
-          //padding-bottom: 10px;
-          &:first-child {
-            border-radius: 15px 0 0 0;
-          }
-          &:last-child {
-            border-radius: 0 15px 0 0;
-          }
+        padding-top: 8px;
+        //padding-bottom: 10px;
+        &:first-child {
+          border-radius: 15px 0 0 0;
+        }
+        &:last-child {
+          border-radius: 0 15px 0 0;
         }
       }
+    }
 
-      .data {
-        td {
-          padding-top: 5px;
-        }
+    .data {
+      td {
+        padding-top: 5px;
       }
+    }
 
-      .summary {
-        color: $white;
-        td {
-          padding-top: 10px;
-          padding-bottom: 10px;
-          background: $table-score-background;
-          &:first-child {
-            border-radius: 0 0 0 15px;
-          }
-          &:last-child {
-            border-radius: 0 0 15px 0;
-          }
+    .summary {
+      color: $white;
+      td {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background: $table-score-background;
+        &:first-child {
+          border-radius: 0 0 0 15px;
+        }
+        &:last-child {
+          border-radius: 0 0 15px 0;
         }
       }
     }
   }
+}
 </style>
