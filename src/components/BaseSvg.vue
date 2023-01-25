@@ -13,19 +13,19 @@
 </template>
 
 <script>
-export default {
-  name: "BaseSvg",
+  export default {
+    name: "BaseSvg",
 
-  props: {
-    name: { type: String, require: true },
-    width: { type: Number, require: true },
-    height: { type: Number, require: true },
-  },
-};
+    props: {
+      name: { type: String, require: true },
+      width: { type: Number, require: true },
+      height: { type: Number, require: true },
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
-svg {
-  overflow: visible;
-}
+  svg {
+    overflow: visible;
+  }
 </style>

@@ -11,40 +11,40 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+  import { mapGetters } from "vuex";
 
-export default {
-  name: "Round",
+  export default {
+    name: "Round",
 
-  computed: {
-    ...mapGetters(["isFetchingData", "areResultsValid", "currentRoundResult", "remainingRoundNumber"]),
+    computed: {
+      ...mapGetters(["isFetchingData", "areResultsValid", "currentRoundResult", "remainingRoundNumber"]),
 
-    isButtonDisabled() {
-      return !this.areResultsValid || this.isFetchingData;
+      isButtonDisabled() {
+        return !this.areResultsValid || this.isFetchingData;
+      },
     },
-  },
-};
+  };
 </script>
 
 <style lang="scss" scoped>
-.round {
-  width: 80%;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 30px 10px;
-  border: 1px solid $border;
-  border-radius: 15px;
-  @include box-shadow;
-  @include has-min-width("xs") {
-    padding: 30px;
-  }
-
-  &__buttons {
-    padding: 10px 0 10px;
+  .round {
+    width: 80%;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px 10px;
+    border: 1px solid $border;
+    border-radius: 15px;
+    @include box-shadow;
     @include has-min-width("xs") {
-      padding: 20px 0 20px;
+      padding: 30px;
+    }
+
+    &__buttons {
+      padding: 10px 0 10px;
+      @include has-min-width("xs") {
+        padding: 20px 0 20px;
+      }
     }
   }
-}
 </style>
