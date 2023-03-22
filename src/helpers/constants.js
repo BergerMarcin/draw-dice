@@ -25,9 +25,9 @@ export const SCORE_FRACTION_DIGITS = 1;
 
 /* ---------------- API ----------------- */
 
-export const API_PATH_DRAW = []; // decided to use only host for cors-server without pathname (previously: ["json", "d6"])
+export const API_PATH_DRAW = ["api", "draw-dice", "6"]; // for `draw-dice-api`/Express-API: []; decided to use only host for cors-server without pathname (previously: ["json", "d6"])
 
-export const API_PATH_IMG = ["images", "poorly-drawn", "d6"];
+export const API_PATH_IMG = ["dice-blob"]; // for `draw-dice-api`/Express-API: ["images", "poorly-drawn", "d6"];
 
 export const API_ERROR = {
   UNKNOWN: {

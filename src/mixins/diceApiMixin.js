@@ -38,11 +38,11 @@ export const diceApiMixin = {
         .simple("GET", urlWithPathname)
         .then(async (resp) => {
           if (this.isDev) console.log(`Response from ${urlWithPathname}: `, resp);
-          if (resp.status !== 200 || !resp.data.success || !resp.data.dice[0]?.value) {
+          if (resp.status !== 200 || !resp.data.value) {
             if (this.isDev) console.error(API_ERROR.WRONG_RESPONSE_STATUS.DEV_MSG);
             throw new Error(API_ERROR.WRONG_RESPONSE_STATUS.USER_MSG);
           } else {
-            return resp.data.dice[0].value;
+            return resp.data.value;
           }
         })
         .catch(() => {

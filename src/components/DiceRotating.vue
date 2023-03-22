@@ -55,7 +55,7 @@ export default {
     getDiceUrl(points) {
       const url = this.getDiceImgUrlPath(API_PATH_IMG);
       if (!url || !points) return "";
-      return `${url}/${points}.png`;
+      return `${url}/dice-${points}dots.png`;
     },
 
     setRandomDiceRotation() {

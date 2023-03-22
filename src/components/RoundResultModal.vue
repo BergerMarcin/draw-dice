@@ -50,7 +50,7 @@ export default {
     getDiceUrl() {
       const url = this.getDiceImgUrlPath(API_PATH_IMG);
       if (!url || this.currentRoundResult.draw === null) return "";
-      return `${url}/${this.currentRoundResult.draw}.png`;
+      return `${url}/dice-${this.currentRoundResult.draw}dots.png`;
     },
   },
 
@@ -144,6 +144,12 @@ $mask-background-color: rgba(50, 50, 50, 0.6); //mask style for Firefox
     border: 2px solid $dice-border;
     background: $dice-background;
     @include box-shadow;
+
+    img {
+      height: 100%;
+      object-fit: fill;
+      width: 100%;
+    }
   }
 
   &__text {
